@@ -4,6 +4,9 @@
   "main": "src/worker.js",
   "compatibility_date": "2026-09-21",
   "compatibility_flags": ["nodejs_compat"],
+  // 公開 URL は workers.dev の 1 つだけにする（バージョンごとのプレビュー URL は作らない）
+  "workers_dev": true,
+  "preview_urls": false,
   "assets": {
     "directory": "./public/",
     "binding": "ASSETS",
