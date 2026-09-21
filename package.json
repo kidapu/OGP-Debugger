@@ -1,0 +1,35 @@
+{
+  "name": "ogp-debugger",
+  "version": "1.0.0",
+  "description": "Basic 認証がかかったサイトの OGP をローカルで確認するデバッガ",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "ogp-debugger": "./server.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "wrangler deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kidapu/OGP-Debugger.git"
+  },
+  "keywords": [
+    "ogp",
+    "open-graph",
+    "basic-auth",
+    "twitter-card",
+    "staging",
+    "noindex"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@cloudflare/puppeteer": "^1.4.0",
+    "wrangler": "^4.135.0"
+  }
+}

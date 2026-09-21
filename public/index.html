@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kida OGP Debugger</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='14'>🔍</text></svg>">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-header">
+  <h1>Kida OGP Debugger</h1>
+  <p class="lede">Basic 認証がかかったサイトの OGP を確認します。認証情報はこの PC の中だけで使われ、外部には送信されません。</p>
+</header>
+
+<main>
+  <form id="form" class="panel form" autocomplete="off">
+    <div class="field field--url">
+      <label for="url">URL</label>
+      <input type="text" id="url" name="url" placeholder="https://staging.example.com/" required spellcheck="false">
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="username">Basic 認証 ID</label>
+        <input type="text" id="username" name="username" placeholder="任意" spellcheck="false" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="password">Basic 認証パスワード</label>
+        <input type="password" id="password" name="password" placeholder="任意" autocomplete="new-password">
+      </div>
+      <div class="field field--ua">
+        <label for="userAgent">User-Agent</label>
+        <select id="userAgent" name="userAgent">
+          <option value="browser">ブラウザ (Chrome)</option>
+          <option value="facebook">facebookexternalhit</option>
+          <option value="twitter">Twitterbot</option>
+          <option value="slack">Slackbot</option>
+          <option value="discord">Discordbot</option>
+          <option value="line">LINE</option>
+          <option value="google">Googlebot</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="toggles">
+        <label class="remember">
+          <input type="checkbox" id="remember"> このタブが開いている間は認証情報を保持する
+        </label>
+        <label class="remember">
+          <input type="checkbox" id="render"> JS 実行後の DOM も確認する
+          <span class="note">デプロイ版のみ・ブラウザを起動するため数秒かかります</span>
+        </label>
+      </div>
+      <button type="submit" id="submit">チェックする</button>
+    </div>
+  </form>
+
+  <div id="status" class="status" hidden></div>
+  <div id="result" hidden>
+    <section class="panel summary">
+      <h2>取得結果</h2>
+      <dl id="summary-list"></dl>
+    </section>
+
+    <section class="panel">
+      <h2>診断 <span id="issue-count" class="count"></span></h2>
+      <ul id="issues" class="issues"></ul>
+    </section>
+
+    <section class="panel" id="render-section" hidden>
+      <h2>JS レンダリング後の差分</h2>
+      <div id="render-body"></div>
+    </section>
+
+    <section class="panel">
+      <h2>カードプレビュー</h2>
+      <div class="tabs" id="tabs" role="tablist">
+        <button type="button" role="tab" data-tab="x" class="is-active">X</button>
+        <button type="button" role="tab" data-tab="facebook">Facebook</button>
+        <button type="button" role="tab" data-tab="slack">Slack</button>
+        <button type="button" role="tab" data-tab="discord">Discord</button>
+        <button type="button" role="tab" data-tab="line">LINE</button>
+      </div>
+      <div id="preview" class="preview"></div>
+    </section>
+
+    <section class="panel">
+      <h2>メタタグ</h2>
+      <div id="tags"></div>
+    </section>
+  </div>
+</main>
+
+<script src="/app.js" type="module"></script>
+</body>
+</html>

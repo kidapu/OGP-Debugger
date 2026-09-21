@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "ogp-debugger",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./public/",
+    "binding": "ASSETS",
+    // 静的ファイルにも Basic 認証をかけるため、必ず Worker を先に通す
+    "run_worker_first": true
+  },
+  // JS 実行後の DOM を見るために使う（無料枠: 10 分/日）
+  "browser": {
+    "binding": "BROWSER"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}
